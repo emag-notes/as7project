@@ -1,6 +1,8 @@
 package org.emamotor.jboss.as7.as7project.entity;
 
-public class Property {
+import java.io.Serializable;
+
+public class Property implements Serializable {
 
     private String key;
     
