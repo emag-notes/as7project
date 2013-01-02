@@ -49,13 +49,20 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.jboss.as</groupId>
+				<artifactId>jboss-as-ejb-client-bom</artifactId>
+				<version>7.1.1.Final</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
 
-		<!-- First declare the APIs we depend on and need for compilation. 
-			 All of them are provided by JBoss AS 7 -->
+		<!-- First declare the APIs we depend on and need for compilation. All 
+			of them are provided by JBoss AS 7 -->
 
 		<!-- Import the CDI API, we use provided scope as the API is included in 
 			JBoss AS 7 -->
@@ -65,8 +72,8 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the Common Annotations API (JSR-250),
-			we use provided scope as the API is included in JBoss AS 7 -->
+		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
+			as the API is included in JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.annotation</groupId>
 			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
@@ -79,7 +86,8 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the JSF API, we use provided scope as the API is included in JBoss AS 7 -->
+		<!-- Import the JSF API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
@@ -90,9 +98,62 @@
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
-			<version>3.1.2.GA</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- For Remote EJB Client Begin -->
+
+		<!-- Import the transaction spec API, we use runtime scope because we aren't 
+			using any direct reference to the spec API in our client code -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- JBoss EJB client API jar. We use runtime scope because the EJB client 
+			API isn't directly used in this example. We just need it in our runtime classpath -->
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jboss-ejb-client</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- client communications with the server use XNIO -->
+		<dependency>
+			<groupId>org.jboss.xnio</groupId>
+			<artifactId>xnio-api</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.xnio</groupId>
+			<artifactId>xnio-nio</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- The client needs JBoss remoting to access the server -->
+		<dependency>
+			<groupId>org.jboss.remoting3</groupId>
+			<artifactId>jboss-remoting</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Remote EJB accesses can be secured -->
+		<dependency>
+			<groupId>org.jboss.sasl</groupId>
+			<artifactId>jboss-sasl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- data serialization for invoking remote EJBs -->
+		<dependency>
+			<groupId>org.jboss.marshalling</groupId>
+			<artifactId>jboss-marshalling-river</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- For Remote EJB Client End -->
 		
 		<dependency>
 			<groupId>junit</groupId>
